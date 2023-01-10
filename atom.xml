@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://BushHuang.github.io</id>
+    <id>https://BushHuang.github.io</id>
     <title>BushHuang&apos;s Blog</title>
-    <updated>2023-01-10T00:38:54.125Z</updated>
+    <updated>2023-01-10T00:41:36.735Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://BushHuang.github.io"/>
-    <link rel="self" href="http://BushHuang.github.io/atom.xml"/>
+    <link rel="alternate" href="https://BushHuang.github.io"/>
+    <link rel="self" href="https://BushHuang.github.io/atom.xml"/>
     <subtitle>十年OI一场空，不开long long见祖宗</subtitle>
-    <logo>http://BushHuang.github.io/images/avatar.png</logo>
-    <icon>http://BushHuang.github.io/favicon.ico</icon>
+    <logo>https://BushHuang.github.io/images/avatar.png</logo>
+    <icon>https://BushHuang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2023, BushHuang&apos;s Blog</rights>
     <entry>
         <title type="html"><![CDATA[CF761B Dasha and friends 题解]]></title>
-        <id>http://BushHuang.github.io/post/cf761b-solution/</id>
-        <link href="http://BushHuang.github.io/post/cf761b-solution/">
+        <id>https://BushHuang.github.io/post/cf761b-solution/</id>
+        <link href="https://BushHuang.github.io/post/cf761b-solution/">
         </link>
         <updated>2023-01-09T15:30:34.000Z</updated>
         <content type="html"><![CDATA[<p>题目大意：给定两个环，判断它们是否相同。</p>
@@ -64,8 +64,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[P8760 填空问题 题解]]></title>
-        <id>http://BushHuang.github.io/post/p8760-solution/</id>
-        <link href="http://BushHuang.github.io/post/p8760-solution/">
+        <id>https://BushHuang.github.io/post/p8760-solution/</id>
+        <link href="https://BushHuang.github.io/post/p8760-solution/">
         </link>
         <updated>2023-01-09T15:29:32.000Z</updated>
         <content type="html"><![CDATA[<p>这是一个寻找规律题。</p>
