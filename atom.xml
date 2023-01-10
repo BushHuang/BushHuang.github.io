@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://BushHuang.github.io</id>
     <title>BushHuang&apos;s Blog</title>
-    <updated>2023-01-10T00:44:35.826Z</updated>
+    <updated>2023-01-10T11:23:26.763Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://BushHuang.github.io"/>
     <link rel="self" href="https://BushHuang.github.io/atom.xml"/>
@@ -16,51 +16,6 @@
         <link href="https://BushHuang.github.io/post/cf761b-solution/">
         </link>
         <updated>2023-01-09T15:30:34.000Z</updated>
-        <content type="html"><![CDATA[<p>题目大意：给定两个环，判断它们是否相同。</p>
-<p>此题数据量并不大 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>≤</mo><mi>n</mi><mo>≤</mo><mn>50</mn><mo separator="true">,</mo><mi>n</mi><mo>≤</mo><mi>L</mi><mo>≤</mo><mn>100</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(1\le n\le 50,n\le L\le 100)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mclose">)</span></span></span></span>, 因此可以使用暴力的方式：</p>
-<p>通过旋转 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 环，每次将环上的第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个元素移到第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 个位置(最后一个元素移到第一个元素的位置），并将旋转完毕后的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 环与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 环相比较，即可得出正解。</p>
-<p>代码：</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int n,l,x,t; 
-bool a[100],b[100],flag; //AB两环 (bool型,1表示有障碍物,0表示没有障碍物) 
-int main()
-{
-	cin&gt;&gt;n&gt;&gt;l;
-	for(int i=1;i&lt;=n;i++) //输入A,B两环 
-	{
-		cin&gt;&gt;x;
-		a[x]=true;
-	}
-	for(int i=1;i&lt;=n;i++)
-	{
-		cin&gt;&gt;x;
-		b[x]=true;
-	}
-	for(int i=1;i&lt;=l;i++)
-	{
-		t=a[l-1]; //将最后一个元素存下来 
-		for(int j=l-1;j&gt;=1;j--) //将第j个元素移到j+1的位置 
-		{
-			a[j]=a[j-1];
-		} 
-		a[0]=t;	//把最后一个元素存到第一个位置 
-		flag=true;
-		for(int j=0;j&lt;l;j++) //判断A环是否与B环相同 
-		{
-			if(a[j]!=b[j]) flag=false;
-		}
-		if(flag)
-		{
-			cout&lt;&lt;&quot;YES&quot;&lt;&lt;endl; //如果相同输出&quot;YES&quot; 
-			return 0;
-		}
-	}
-	cout&lt;&lt;&quot;NO&quot;&lt;&lt;endl; //如果转了一圈还没有重合输出&quot;NO&quot; 
-	return 0;
-}
-</code></pre>
-]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[P8760 填空问题 题解]]></title>
@@ -68,33 +23,5 @@ int main()
         <link href="https://BushHuang.github.io/post/p8760-solution/">
         </link>
         <updated>2023-01-09T15:29:32.000Z</updated>
-        <content type="html"><![CDATA[<p>这是一个寻找规律题。</p>
-<p>首先，我们制作一个可以寻找前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个斐波那契数列的数个位的程序：</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int a=1,b=1,c;         //由于只取个位，所以不需要考虑爆long long的问题
-long long n;
-int main()
-{
-	cin&gt;&gt;n;  
-	cout&lt;&lt;&quot;1 1 &quot;;           //前两个数
-	for(int i=1;i&lt;=n;i++)
-	{
-		c=(a+b)%10;     //每次只取个位
-		cout&lt;&lt;c&lt;&lt;&quot; &quot;;
-		a=b;
-		b=c;
-	}
-	return 0;
-}
-
-</code></pre>
-<p>输入 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1000</mn></mrow><annotation encoding="application/x-tex">1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 试试：</p>
-<figure data-type="image" tabindex="1"><img src="https://cdn.luogu.com.cn/upload/image_hosting/1u42kosb.png" alt="" loading="lazy"></figure>
-<p>很明显，这是一个周期为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>60</mn></mrow><annotation encoding="application/x-tex">60</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">0</span></span></span></span> 的数列，其中“<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>7</mn></mrow><annotation encoding="application/x-tex">7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span></span></span></span>”出现了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>8</mn></mrow><annotation encoding="application/x-tex">8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span></span></span></span> 次。</p>
-<p>计算可得答案：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mo fence="true">⌊</mo><mfrac><mn>202202011200</mn><mn>60</mn></mfrac><mo fence="true">⌋</mo></mrow><mo>×</mo><mn>8</mn><mo>=</mo><mn>26960268160</mn></mrow><annotation encoding="application/x-tex">\left \lfloor\frac{202202011200}{60}   \right \rfloor \times 8 = 26960268160 
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">⌊</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">6</span><span class="mord">0</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">0</span><span class="mord">2</span><span class="mord">2</span><span class="mord">0</span><span class="mord">2</span><span class="mord">0</span><span class="mord">1</span><span class="mord">1</span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">⌋</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">6</span><span class="mord">9</span><span class="mord">6</span><span class="mord">0</span><span class="mord">2</span><span class="mord">6</span><span class="mord">8</span><span class="mord">1</span><span class="mord">6</span><span class="mord">0</span></span></span></span></span></p>
-]]></content>
     </entry>
 </feed>
