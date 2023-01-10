@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://BushHuang.github.io</id>
     <title>BushHuang&apos;s Blog</title>
-    <updated>2023-01-10T11:51:58.184Z</updated>
+    <updated>2023-01-10T15:54:36.102Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://BushHuang.github.io"/>
     <link rel="self" href="https://BushHuang.github.io/atom.xml"/>
@@ -10,6 +10,17 @@
     <logo>https://BushHuang.github.io/images/avatar.png</logo>
     <icon>https://BushHuang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2023, BushHuang&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[手打的建图模板]]></title>
+        <id>https://BushHuang.github.io/post/shou-da-de-jian-tu-mo-ban/</id>
+        <link href="https://BushHuang.github.io/post/shou-da-de-jian-tu-mo-ban/">
+        </link>
+        <updated>2023-01-10T14:36:28.000Z</updated>
+        <summary type="html"><![CDATA[<p>因为本人太懒，<s>甚至懒得用vector建图</s>😅，所以我就用<a href="https://github.com/oicool/book/blob/main/book.md"><s>OI邪教</s>DILL的书</a>中的知识写了一个很简单但能满足日常建图需要的模板。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>因为本人太懒，<s>甚至懒得用vector建图</s>😅，所以我就用<a href="https://github.com/oicool/book/blob/main/book.md"><s>OI邪教</s>DILL的书</a>中的知识写了一个很简单但能满足日常建图需要的模板。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CF761B Dasha and friends 题解]]></title>
         <id>https://BushHuang.github.io/post/cf761b-solution/</id>

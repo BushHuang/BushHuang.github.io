@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>P8760 填空问题 题解 | BushHuang&#39;s Blog</title>
+<title>手打的建图模板 | BushHuang&#39;s Blog</title>
 
 <link rel="shortcut icon" href="https://BushHuang.github.io/favicon.ico?v=1673366030718">
 
@@ -89,55 +89,143 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    P8760 填空问题 题解
+                    手打的建图模板
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2023-01-09 ·
+                        · 2023-01-10 ·
                     </time>
+                    
+                        <a href="https://BushHuang.github.io/tag/mgCEPtnsV/" class="post-tags">
+                            # 图论
+                        </a>
+                    
+                        <a href="https://BushHuang.github.io/tag/JCcbx6ifsR/" class="post-tags">
+                            # 实用
+                        </a>
                     
                         <a href="https://BushHuang.github.io/tag/UaSYV60_l/" class="post-tags">
                             # OI
                         </a>
                     
-                        <a href="https://BushHuang.github.io/tag/6ydLGNMlhv/" class="post-tags">
-                            # 题解
-                        </a>
-                    
                 </div>
                 <div class="post-content">
-                    <p>这是一个寻找规律题。</p>
-<p>首先，我们制作一个可以寻找前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个斐波那契数列的数个位的程序：</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int a=1,b=1,c;         //由于只取个位，所以不需要考虑爆long long的问题
-long long n;
-int main()
+                    <p>因为本人太懒，<s>甚至懒得用vector建图</s>😅，所以我就用<a href="https://github.com/oicool/book/blob/main/book.md"><s>OI邪教</s>DILL的书</a>中的知识写了一个很简单但能满足日常建图需要的模板。</p>
+<!-- more -->
+<p>代码：</p>
+<pre><code>class graph
 {
-	cin&gt;&gt;n;  
-	cout&lt;&lt;&quot;1 1 &quot;;           //前两个数
-	for(int i=1;i&lt;=n;i++)
-	{
-		c=(a+b)%10;     //每次只取个位
-		cout&lt;&lt;c&lt;&lt;&quot; &quot;;
-		a=b;
-		b=c;
-	}
-	return 0;
-}
-
+	private:
+		struct edge
+		{
+			int y,w;
+		};
+		vector&lt;edge&gt;e[1001];
+		const int INF=1000000001;
+		int n,m,indg[1001];
+	public:
+		graph(int dn,int dm)
+		{
+			n=dn;
+			m=dm;
+		}
+		void newedge(int x,int y,int w)
+		{
+			edge t;
+			t.y=y;
+			t.w=w;
+			indg[y]++;
+			e[x].push_back(t);
+			return;
+		}
+		int outdegree(int x)
+		{
+			return e[x].size();
+		}
+		int indegree(int x)
+		{
+			return indg[x];
+		}
+		int edgelen(int x,int y)
+		{
+			for(int i=0;i&lt;e[x].size();i++)
+			{
+				if(e[x][i].y==y) return e[x][i].w;
+			}
+			return INF;
+		}
+		int edgelen_index(int x,int y)
+		{
+			return e[x][y].w;
+		}
+};
 </code></pre>
-<p>输入 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1000</mn></mrow><annotation encoding="application/x-tex">1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 试试：</p>
-<figure data-type="image" tabindex="1"><img src="https://cdn.luogu.com.cn/upload/image_hosting/1u42kosb.png" alt="" loading="lazy"></figure>
-<p>很明显，这是一个周期为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>60</mn></mrow><annotation encoding="application/x-tex">60</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">0</span></span></span></span> 的数列，其中“<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>7</mn></mrow><annotation encoding="application/x-tex">7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span></span></span></span>”出现了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>8</mn></mrow><annotation encoding="application/x-tex">8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span></span></span></span> 次。</p>
-<p>计算可得答案：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mo fence="true">⌊</mo><mfrac><mn>202202011200</mn><mn>60</mn></mfrac><mo fence="true">⌋</mo></mrow><mo>×</mo><mn>8</mn><mo>=</mo><mn>26960268160</mn></mrow><annotation encoding="application/x-tex">\left \lfloor\frac{202202011200}{60}   \right \rfloor \times 8 = 26960268160 
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">⌊</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">6</span><span class="mord">0</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">0</span><span class="mord">2</span><span class="mord">2</span><span class="mord">0</span><span class="mord">2</span><span class="mord">0</span><span class="mord">1</span><span class="mord">1</span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">⌋</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">6</span><span class="mord">9</span><span class="mord">6</span><span class="mord">0</span><span class="mord">2</span><span class="mord">6</span><span class="mord">8</span><span class="mord">1</span><span class="mord">6</span><span class="mord">0</span></span></span></span></span></p>
+<p>介绍一下其中的功能：</p>
+<h2 id="构造graph">构造graph</h2>
+<p>使用graph(int n,int m)来创建一个graph。<br>
+这个graph可以有负权，但<strong>不能有重边</strong>。<br>
+n代表图的点数，m代表图的边数，当然，您也可以不填，但有些函数无法使用。</p>
+<pre><code>//Example1
+graph A; 
+graph B(4,5); 
+</code></pre>
+<h2 id="增边">增边</h2>
+<p>使用newedge(int x,int y,int w)可以新增一条从x到y，权值为w的边。</p>
+<pre><code>//Example2
+graph g;
+g.newedge(1,2,1);
+g.newedge(2,3,1);
+</code></pre>
+<h2 id="查询结点入度出度">查询结点入度/出度</h2>
+<p>使用indegree(int x)来查询结点x的入度。<br>
+使用outdegree(int x)来查询结点x的出度。</p>
+<pre><code>//Example3
+graph g;
+g.newedge(1,2,1);
+g.newedge(2,3,1);
+printf(&quot;%d %d&quot;,g.indegree(2),g.outdegree(2));
+</code></pre>
+<p>输出：</p>
+<pre><code>1 1
+</code></pre>
+<h2 id="查询两直接相连结点之间的度数方案一">查询两直接相连结点之间的度数（方案一）</h2>
+<p>使用edgelen(int x,int y)来查询结点x到结点y的权值。如果两点不直接连接，则返回  <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">10^9+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
+<pre><code>//Example4
+graph g;
+g.newedge(1,2,1);
+g.newedge(2,3,1);
+printf(&quot;%d %d&quot;,g.edgelen(1,2),g.edgelen(1,3));
+</code></pre>
+<p>输出：</p>
+<pre><code>1 1000000001
+</code></pre>
+<h2 id="查询两直接相连结点之间的度数方案二">查询两直接相连结点之间的度数（方案二）</h2>
+<p>使用edgelen_index(int x,int y)来查询结点x到<strong>结点x的第y个下家</strong>的权值。如果两点不直接连接，则返回 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">10^9+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 。</p>
+<blockquote>
+<p>🔔  结点x的第y个下家是指此结点与结点x增边时结点x已经与(y-1)个点连接。</p>
+</blockquote>
+<pre><code>//Example4
+graph g;
+g.newedge(1,2,1);
+g.newedge(1,3,2);
+g.newedge(2,3,1);
+printf(&quot;%d %d&quot;,g.edgelen_index(1,1),g.edgelen_index(1,2));
+</code></pre>
+<p>输出：</p>
+<pre><code>1 2
+</code></pre>
 
                 </div>
             </article>
         </div>
 
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://BushHuang.github.io/post/cf761b-solution/" class="post-title gt-a-link">
+                    CF761B Dasha and friends 题解
+                </a>
+            </div>
         
 
         
